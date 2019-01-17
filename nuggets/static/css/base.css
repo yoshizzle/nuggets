@@ -1,0 +1,43 @@
+html {
+  position: relative !important;
+  min-height: 100% !important;
+}
+
+footer {
+  width: 100%;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+}
+
+/* Classes */
+.active {
+  color: rgba(14, 174, 89, 1);
+  font-weight: bold;
+}
+
+.inactive {
+  color: rgba(207, 0, 15, 1);
+  font-weight: bold;
+}
+
+.padBottom {
+  margin-bottom: 1em;
+}
+
+.padRight {
+  margin-right: 0.6em;
+}
+
+.padTop {
+  margin-top: 1em;
+}
+
+.template-logo-url {
+  padding: 0.4em;
+  border: 1px solid #000000;
+  background: #dddddd;
+}

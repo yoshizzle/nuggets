@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    Welcome to Nuggets
+{% endblock %}
+{% block content %}
+
+<div class='row padTop'>
+  <div class='col-12'>
+    {% for u in online_users %}
+      {{ u.user }}
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

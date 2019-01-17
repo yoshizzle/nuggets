@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+    Search Results
+{% endblock %}
+{% block content %}
+
+<div class='row padTop padBottom'>
+  <div class='col-12'>
+    <h1>Search Results: {{ searchtext }}</h1>
+  </div>
+</div>
+
+<div class='row'>
+    <div class='col-12'>
+
+      <h3>Templates</h3>
+      <table class='table table-striped table-hover'>
+        <thead class='thead-dark'>
+          <tr>
+            <th>ID</th>
+            <th>Logo</th>
+            <th>Label</th>
+            <th>Status</th>
+            <th>Developer</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in template_search %}
+          <tr>
+            <td>{{ t.id }}</td>
+            <td>
+              {% if t.logo_url %}
+                <img src='{{ t.logo_url }}' class='img-fluid' width='50' />
+              {% endif %}</td>
+            <td><a href='/templates/{{ t.id }}/edit'>{{ t.label }}</a></td>
+            <td>{% if t.status | string == 'AppTemplateStatus.active' %}<div class='active'>Active</div>{% else %}<div class='inactive'>Inactive</div>{% endif %}</td>
+            <td>{{ t.developer}}</td>
+            <td>{{ t.category }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+      <h3>Developers</h3>
+      Coming Soon
+    </div>
+</div>
+
+{% endblock %}
