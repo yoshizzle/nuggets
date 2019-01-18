@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+    Random nugget_form
+{% endblock %}
+{% block content %}
+
+<div class='row padTop'>
+  <div class='col-11'>
+      <h2>{{ nugget.title_md|safe }}</h2>
+  </div>
+  <div class='col-1'>
+    <a href='/nugget/{{ nugget._id }}/edit'><button type="button" class="btn btn-info">Edit</button></a>
+  </div>
+</div>
+
+<div class='row padTop'>
+  <div class='col-12'>
+      <p>{{ nugget.description_md|safe }}</p>
+
+      <p><strong>Keywords:</strong>
+      {% for k in nugget.keywords %}
+        <a href="/keyword/{{ k.strip().replace(' ', '+') }}">{{ k }}</a>{%- if not loop.last %}, {% endif %}
+      {% endfor %}</p>
+  </div>
+</div>
+
+{% endblock %}

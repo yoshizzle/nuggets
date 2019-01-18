@@ -1,0 +1,55 @@
+{% from "formhelpers.j2" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+    Add/Edit Nugget
+{% endblock %}
+{% block content %}
+
+
+{% if 'new' in request.path %}
+  <form method='POST' action='/nugget/new'>
+{% else %}
+  <form method='POST' action='/nugget/{{ nugget.id }}/edit'>
+{% endif %}
+
+<div class='row'>
+  <div class='col-8 padTop'>
+
+        <div class='row'>
+          <div class='col-12'>
+            <h2>{% if 'new' in request.path %}New Nugget{% else %}{{ nugget.label }}{% endif %}</h2>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col-12 form-group'>
+            <label for='label'>Label:</label><br />
+            {{ render_field(form.title, size=80) }}
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col-12 form-group'>
+            <label for='label'>Description:</label><br />
+            {{ render_field(form.description, cols=80, rows=15) }}
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col-12 form-group'>
+            <label for='label'>Keywords:</label><br />
+            {{ render_field(form.keywords, size=80) }}
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col-12 form-group'>
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </div>
+        </div>
+
+  </div>
+</div>
+</form>
+
+{% endblock %}

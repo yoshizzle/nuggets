@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    Random nugget_form
+{% endblock %}
+{% block content %}
+
+<div class='row padTop'>
+  <div class='col-12'>
+      <h2><a href='/nugget/{{ nugget._id }}'>{{ nugget.title }}</a></h2>
+      
+      <p>{{ nugget.description|safe }}</p>
+
+      <p><strong>Keywords:</strong>
+      {% for k in nugget.keywords.split(', ') %}
+        <a href='/keyword/{{ k }}'>{{ k }}</a>{%- if not loop.last %}, {% endif %}
+      {% endfor %}</p>
+  </div>
+</div>
+
+{% endblock %}
