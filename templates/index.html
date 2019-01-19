@@ -4,20 +4,30 @@
 {% endblock %}
 {% block content %}
 
-<div class='row padTop'>
+<div class='row padTop padBottom'>
   <div class='col-12'>
+    <h1>Recent Nuggets</h1>
+  </div>
+</div>
+
+<div class='row padTop'>
+  <div class='col-9'>
 
     <table class='table table-hover table-striped'>
     <thead></thead>
     <tbody>
     {% for n in nuggets %}
       <tr>
-        <td><a href='/nugget/{{ n._id }}'>{{ n.title }}</a></td>
+        <td><a href='/nugget/{{ n._id }}'>{{ n.title_md|safe }}</a></td>
       </tr>
     {% endfor %}
     </tbody>
     </table>
 
+  </div>
+
+  <div class='col-3'>
+    <h2>Popular Keywords</h2>
   </div>
 </div>
 

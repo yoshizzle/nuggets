@@ -17,10 +17,12 @@
   <div class='col-12'>
       <p>{{ nugget.description_md|safe }}</p>
 
-      <p><strong>Keywords:</strong>
-      {% for k in nugget.keywords %}
-        <a href="/keyword/{{ k.strip().replace(' ', '+') }}">{{ k }}</a>{%- if not loop.last %}, {% endif %}
-      {% endfor %}</p>
+      <div class="alert alert-info" role="alert">
+        <strong>Keywords:</strong>
+        {% for k in nugget.keywords %}
+          <a href="/keyword/{{ k.strip().replace(' ', '+') }}">{{ k }}</a>{%- if not loop.last %}, {% endif %}
+        {% endfor %}
+      </div>
   </div>
 </div>
 

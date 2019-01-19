@@ -2,6 +2,7 @@ import time
 import logging
 
 from configparser import ConfigParser
+from datetime import datetime
 
 from flask import Flask
 from flask_pymongo import PyMongo
@@ -36,6 +37,10 @@ import os
 from flask import send_from_directory
 
 # universal routes
+@app.context_processor
+def inject_now():
+    return {'now': datetime.now()}
+
 @app.route('/favicon.ico')
 def send_favicon():
     """
