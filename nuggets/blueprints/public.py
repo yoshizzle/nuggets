@@ -19,7 +19,6 @@ static_folder = os.path.join(os.getcwd(), 'static')
 
 @public.route('/')
 def index():
-    nugget_form = NuggetForm()
     nuggets = mongo.db.nuggets.find({}).limit(10).sort('created', pymongo.DESCENDING)
 
     return render_template("index.html", nuggets=nuggets)
@@ -35,29 +34,74 @@ def keyword_get(keyword):
 def nugget_get(id):
     nugget = mongo.db.nuggets.find_one({'_id': ObjectId(id)})
 
+    if not nugget:
+        abort(404)
+
     return render_template('/nugget.html', nugget=nugget)
+
+@public.route('/nugget/<id>/edit')
+def nugget_edit(id):
+    nugget = mongo.db.nuggets.find_one({'_id': ObjectId(id)})
+
+    if not nugget:
+        abort(404)
+
+    nugget_form = NuggetForm()
+    nugget_form.id = nugget['_id']
+    nugget_form.title = nugget['title']
+    nugget_form.description = nugget['description']
+    nugget_form.keywords = ', '.join(nugget['keywords'])
+
+    return render_template('/nugget_edit.html', form=nugget_form)
+
+@public.route('/nugget/<id>/edit', methods=['POST'])
+def nugget_edit_update(id):
+        nugget = mongo.db.nuggets.find_one({'_id': ObjectId(id)})
+
+        if not nugget:
+            abort(404)
+
+        kwords = []
+        for k in request.form['keywords'].split(','):
+            kwords.append(k.strip().lower())
+
+        nid = nugget['_id']
+        mongo.db.nuggets.update(
+            {'_id': nid},
+            {
+                '$set': {
+                    'title': request.form['title'],
+                    'title_md': markdown(request.form['title']),
+                    'description': request.form['description'],
+                    'description_md': markdown(request.form['description']),
+                    'keywords': kwords
+                }
+            },
+            True
+        )
+
+        return redirect('/nugget/{}'.format(nid))
 
 @public.route('/nugget/new')
 def nugget():
-    nugget_form = NuggetForm()
 
-    return render_template("nugget_edit.html", form=nugget_form)
+    return render_template('nugget_edit.html', form=None)
 
 @public.route('/nugget/new', methods=['POST'])
 def nugget_post():
-    nugget_form = NuggetForm()
     kwords = []
     dnow = datetime.utcnow()
 
-    for k in nugget_form.keywords.data.split(','):
+    for k in request.form['keywords'].split(','):
         kwords.append(k.strip().lower())
 
     new_nugget = mongo.db.nuggets.insert_one({
-        'title': nugget_form.title.data,
-        'title_md': markdown(nugget_form.title.data),
-        'description': nugget_form.description.data,
-        'description_md': markdown(nugget_form.description.data),
-        'keywords': kwords, 'created': dnow
+        'title': request.form['title'],
+        'title_md': markdown(request.form['title']),
+        'description': request.form['description'],
+        'description_md': markdown(request.form['description']),
+        'keywords': kwords,
+        'created': dnow
     }).inserted_id
 
     return redirect('/')
