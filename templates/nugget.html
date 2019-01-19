@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 
-<div class='row padTop'>
+<div class='row padTop padBottom'>
   <div class='col-11'>
       <h2>{{ nugget.title_md|safe }}</h2>
   </div>
@@ -13,10 +13,14 @@
   </div>
 </div>
 
-<div class='row padTop'>
+<div class='row padTop padBottom'>
   <div class='col-12'>
       <p>{{ nugget.description_md|safe }}</p>
+  </div>
+</div>
 
+<div class='row'>
+  <div class='col-12'>
       <div class="alert alert-info" role="alert">
         <strong>Keywords:</strong>
         {% for k in nugget.keywords %}

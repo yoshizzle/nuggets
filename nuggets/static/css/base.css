@@ -3,6 +3,10 @@ html {
   min-height: 100% !important;
 }
 
+h1, h2, h3, h4 {
+  font-weight: bold;
+}
+
 footer {
   width: 100%;
   margin-bottom: 1em;
@@ -35,6 +39,10 @@ label {
 
 .padTop {
   margin-top: 1em;
+}
+
+.results-keyword-list {
+  font-size: 0.8em;
 }
 
 .template-logo-url {

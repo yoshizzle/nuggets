@@ -1,23 +1,10 @@
 (function($) {
 
-  templateObj = {
-    toggleDeleteScreenshot: function(theID) {
-      ssinput = 'screenshot_edit_' + theID.split('_')[2];
+  nuggetObj = {
 
-      if ($('#' + ssinput).attr('disabled')) {
-        $('#' + ssinput).prop('disabled', false);
-      }
-      else {
-          $('#' + ssinput).prop('disabled', true);
-      }
-    } // end toggleDeleteScreenshot
-  } // end templateObj
+  } // end nuggetObj
 
   $(document).ready(function() {
-
-    $('.screenshot_delete').click(function() {
-      templateObj.toggleDeleteScreenshot($(this).attr('id'));
-    });
 
   }); // end document.ready
 

@@ -6,28 +6,30 @@
 
 <div class='row padTop padBottom'>
   <div class='col-12'>
-    <h1>Recent Nuggets</h1>
+    <h1>Your Recent Nuggets</h1>
   </div>
 </div>
 
 <div class='row padTop'>
-  <div class='col-9'>
+  <div class='col-12'>
 
     <table class='table table-hover table-striped'>
-    <thead></thead>
     <tbody>
     {% for n in nuggets %}
       <tr>
-        <td><a href='/nugget/{{ n._id }}'>{{ n.title_md|safe }}</a></td>
+        <td>
+          <h4><a href='/nugget/{{ n._id }}'>{{ n.title_md|safe }}</a></h4>
+          <p class='results-keyword-list'>
+            <strong>Keywords:</strong>
+            {% for k in n.keywords %}
+              <a href="/keyword/{{ k.replace(' ', '+')}}">{{ k }}{%- if not loop.last %}, {% endif %}</a>
+            {% endfor %}</p>
+        </td>
       </tr>
     {% endfor %}
     </tbody>
     </table>
 
-  </div>
-
-  <div class='col-3'>
-    <h2>Popular Keywords</h2>
   </div>
 </div>
 

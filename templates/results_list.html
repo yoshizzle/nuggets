@@ -14,7 +14,14 @@
     <tbody>
     {% for r in results %}
       <tr>
-        <td><a href='/nugget/{{ r._id }}'>{{ r.title_md|safe }}</a></td>
+        <td>
+          <h4><a href='/nugget/{{ r._id }}'>{{ r.title_md|safe }}</a></h4>
+          <p class='results-keyword-list'>
+            <strong>Keywords:</strong>
+            {% for k in r.keywords %}
+              <a href="/keyword/{{ k.replace(' ', '+')}}">{{ k }}{%- if not loop.last %}, {% endif %}</a>
+            {% endfor %}</p>
+        </td>
       </tr>
     {% endfor %}
     </tbody>
