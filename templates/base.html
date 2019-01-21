@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/a11y-dark.min.css" />
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> {# this needs to be in the <head> #}
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
@@ -17,18 +17,22 @@
             <div class="container main-container">
                 {% block content %}
                 {% endblock %}
+
+                <div class='row padTop'>
+                  <div class='col-md-8 offset-md-2 text-center footer'>
+                    "Determine that today you will overcome yourself of the day before,<br />tomorrow you will win over those of lesser skill,<br />and later you will win over those of greater skill." &mdash; Miyamoto Musashi
+                  </div>
+                </div>
             </div>
-            <footer class='footer'>
-              &copy; {{ now.year }} Nuggets. Copyrighting for no damn good reason.
-            </footer>
         {% endblock %}
 
         {% block jscript %}
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
             <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-
+            <script>hljs.initHighlightingOnLoad();</script>
         {% endblock %}
     </body>
 </html>

@@ -7,13 +7,6 @@ h1, h2, h3, h4 {
   font-weight: bold;
 }
 
-footer {
-  width: 100%;
-  margin-bottom: 1em;
-  text-align: center;
-  font-size: 0.8em;
-}
-
 label {
   font-weight: bold;
 }
@@ -22,6 +15,11 @@ label {
 .active {
   color: rgba(14, 174, 89, 1);
   font-weight: bold;
+}
+
+.footer {
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 .inactive {

@@ -63,7 +63,8 @@ def nugget_edit_update(id):
 
         kwords = []
         for k in request.form['keywords'].split(','):
-            kwords.append(k.strip().lower())
+            if k.strip().lower() not in kwords:
+                kwords.append(k.strip().lower())
 
         nid = nugget['_id']
         mongo.db.nuggets.update(
@@ -77,7 +78,7 @@ def nugget_edit_update(id):
                     'keywords': kwords
                 }
             },
-            True
+            False # upsert
         )
 
         return redirect('/nugget/{}'.format(nid))
@@ -93,7 +94,8 @@ def nugget_post():
     dnow = datetime.utcnow()
 
     for k in request.form['keywords'].split(','):
-        kwords.append(k.strip().lower())
+        if k.strip().lower() not in kwords:
+            kwords.append(k.strip().lower())
 
     new_nugget = mongo.db.nuggets.insert_one({
         'title': request.form['title'],
