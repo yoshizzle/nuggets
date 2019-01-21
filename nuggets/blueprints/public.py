@@ -39,6 +39,20 @@ def nugget_get(id):
 
     return render_template('/nugget.html', nugget=nugget)
 
+@public.route('/nugget/<id>/delete')
+def nugget_delete(id):
+    """
+    I hope you know what you're doing if you hit this endpoint
+    """
+    nugget = mongo.db.nuggets.find_one({'_id': ObjectId(id)})
+
+    if not nugget:
+        abort(404)
+
+    mongo.db.nuggets.delete_one({'_id': ObjectId(id)})
+
+    return redirect('/')
+
 @public.route('/nugget/<id>/edit')
 def nugget_edit(id):
     nugget = mongo.db.nuggets.find_one({'_id': ObjectId(id)})

@@ -9,7 +9,8 @@
       <h2>{{ nugget.title_md|safe }}</h2>
   </div>
   <div class='col-1'>
-    <a href='/nugget/{{ nugget._id }}/edit'><button type="button" class="btn btn-info">Edit Nugget</button></a>
+    <p><a href='/nugget/{{ nugget._id }}/edit'><button type="button" class="btn btn-info">Edit Nugget</button></a></p>
+    <p><a class='delete-nugget' href='/nugget/{{ nugget._id }}/delete'>Delete</a></p>
   </div>
 </div>
 
