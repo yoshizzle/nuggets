@@ -19,7 +19,7 @@ static_folder = os.path.join(os.getcwd(), 'static')
 
 @public.route('/')
 def index():
-    nuggets = mongo.db.nuggets.find({}).limit(10).sort('created', pymongo.DESCENDING)
+    nuggets = mongo.db.nuggets.find({}).limit(8).sort('created', pymongo.DESCENDING)
 
     return render_template("index.html", nuggets=nuggets)
 
