@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav mr-auto">
             <li class='nav-item'>
-                <a class="nav-link{% if 'nugget' in request.path %} active{% endif %}" href='/nugget/new'>Create Nugget</a>
+                <a class="nav-link{% if 'nugget' in request.path and 'new' in request.path %} active{% endif %}" href='/nugget/new'>Create Nugget</a>
             </li>
             <li class='nav-item'>
                 <a class="nav-link{% if 'random' in request.path %} active{% endif %}" href='/random'>Random</a>
