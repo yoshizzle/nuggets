@@ -20,8 +20,9 @@ static_folder = os.path.join(os.getcwd(), 'static')
 @public.route('/')
 def index():
     nuggets = mongo.db.nuggets.find({}).limit(8).sort('created', pymongo.DESCENDING)
+    count = mongo.db.nuggets.count()
 
-    return render_template("index.html", nuggets=nuggets)
+    return render_template("index.html", nuggets=nuggets, count=count)
 
 @public.route('/keyword/<keyword>')
 def keyword_get(keyword):
